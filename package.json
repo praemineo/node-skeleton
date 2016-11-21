@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . ...; exit 0",
-    "dev": "export NODE_ENV=development && echo 'Node environment set to development' && exit 0"
+    "dev": "export NODE_ENV=development && echo 'Node environment set to development' && node index.js && exit 0"
   },
   "keywords": [
     "Node",
