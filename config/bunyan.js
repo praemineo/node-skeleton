@@ -1,6 +1,9 @@
+'use strict';
+
 const bunyan = require('bunyan');
 const bunyanFormat = require('bunyan-format');
 const path = require('path');
+const bunyanSlack = require('bunyan-slack');
 
 const appRootDir = path.dirname(require.main.filename);
 const configHelper = require(path.join(__dirname, '/helper'));
@@ -27,7 +30,29 @@ if (process.env.NODE_ENV === 'development') {
   configHelper.moduleNotConfigured('bunyan');
 } else if (process.env.NODE_ENV === 'beta') {
   configHelper.moduleNotConfigured('bunyan');
-} else if (process.env.NODE_ENV === 'production') {
-  configHelper.moduleNotConfigured('bunyan');
-} else if (process.env.NODE_ENV !== undefined) configHelper.moduleNotConfigured('bunyan');
-else configHelper.envNotConfigured();
+} else {
+  // If no NODE_ENV configured, then it's considered as Production
+
+  const formatOut = bunyanFormat({
+    outputMode: 'short',
+  });
+
+  module.exports.createLogger = function createLogger(name) {
+    return bunyan.createLogger({
+      name,
+      serializers: bunyan.stdSerializers,
+      streams: [{
+        level: 'info',
+        path: `${appRootDir}/logs/info.production.log`
+      }, {
+        level: 'error',
+        stream: new bunyanSlack({
+          webhook_url: "<webhook_url>",
+          channel: "<channel_name>",
+          username: "<sender_name>",
+        })
+      }],
+    });
+  };
+}
+

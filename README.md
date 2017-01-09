@@ -16,3 +16,12 @@
 - *helmet*
   Security suit implementation
 
+- *bluebird*
+  Bluebird promise implementation
+
+- *nodemon*
+  For restart on change while development phase
+
+- *pm2*
+  For restart on error while production phase
+

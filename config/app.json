@@ -2,5 +2,7 @@
   "development" : {
     "port" : 4444
     },
-  "test" : {}
+  "production" : {
+    "port" : 4444
+  }
 }

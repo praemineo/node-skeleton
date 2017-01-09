@@ -1,11 +1,11 @@
 {
   "name": "the-node-skeleton",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "The Node skeleton",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . ...; exit 0",
-    "dev": "export NODE_ENV=development && echo 'Node environment set to development' && node index.js && exit 0"
+    "dev": "export NODE_ENV=development && echo 'Node environment set to development' && nodemon index.js && exit 0",
+    "start": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton'"
   },
   "keywords": [
     "Node",
@@ -15,6 +15,7 @@
   "author": "gggauravgandhi",
   "license": "MIT",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "bunyan": "^1.8.1",
     "bunyan-format": "^0.2.1",

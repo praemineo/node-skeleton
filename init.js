@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const compression = require('compression');
 const bodyParser = require('body-parser');
@@ -5,12 +7,11 @@ const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const path = require('path');
 
-const config = require(path.join(__dirname, '/config/index.js'));
-const appRouter = require(path.join(__dirname, '/routes.js'));
-
 module.exports.init = function init() {
 
   const app = express();
+  require.cache.userObject = { app };
+  require.cache.userObject.appPath = __dirname;
 
   app.use(compression());
   app.use(bodyParser.json());
@@ -20,7 +21,8 @@ module.exports.init = function init() {
   app.use(cookieParser());
   app.use(helmet());
 
-
+  const config = require(path.join(__dirname, '/config/index.js'));
+  const appRouter = require(path.join(__dirname, '/routes.js'));
   const logger = config.logger.createLogger('init');
 
   // Router mounting
@@ -28,8 +30,6 @@ module.exports.init = function init() {
 
   // Public Folder binding
   app.use(express.static(__dirname + "/public"));
-
-  logger.info('App initialized');
 
   app.listen(config.app.port)
     .on('error', error => {
@@ -40,3 +40,4 @@ module.exports.init = function init() {
     });
 
 };
+

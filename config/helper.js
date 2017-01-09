@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   moduleNotConfigured(moduleName) {
     console.warn(`${moduleName} is not configured to use in ${process.env.NODE_ENV} environment`);
