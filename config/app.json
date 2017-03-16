@@ -1,8 +1,0 @@
-{
-  "development" : {
-    "port" : 4444
-    },
-  "production" : {
-    "port" : 4444
-  }
-}
