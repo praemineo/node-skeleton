@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "export NODE_ENV=development && echo 'Node environment set to development' && nodemon index.js && exit 0",
-    "start": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton'"
+    "start": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton'",
+    "cluster": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton' -i 0"
   },
   "keywords": [
     "Node",
