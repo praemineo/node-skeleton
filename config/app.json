@@ -1,8 +1,8 @@
 {
   "development" : {
-    "port" : 4444
+    "port" : 1234
     },
   "production" : {
-    "port" : 4444
+    "port" : 8080
   }
 }
