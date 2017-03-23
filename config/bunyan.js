@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === 'development') {
         stream: formatOut,
       }, {
         level: 'error',
-        path: `${appRootDir}/logs/error.development.log`,
+        path: `${appRootDir}/log/error.development.log`,
       }],
     });
   };
@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'development') {
       serializers: bunyan.stdSerializers,
       streams: [{
         level: 'info',
-        path: `${appRootDir}/logs/info.production.log`
+        path: `${appRootDir}/log/info.production.log`
       }, {
         level: 'error',
         stream: new bunyanSlack({

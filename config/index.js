@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'development') {
   module.exports.logger = bunyanConfig;
 
   if (!appConfig.development) configHelper.moduleNotConfigured('app-config');
-  
+
   module.exports.app = appConfig.development;
 } else if (process.env.NODE_ENV === 'test') {
   if (!appConfig.test) configHelper.moduleNotConfigured('app-config');
