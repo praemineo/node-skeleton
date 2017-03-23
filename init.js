@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const path = require('path');
+const cors = require('cors');
+const responseTime = require('response-time');
 
 module.exports.init = function init() {
 
@@ -20,6 +22,8 @@ module.exports.init = function init() {
   }));
   app.use(cookieParser());
   app.use(helmet());
+  app.use(cors());
+  app.use(responseTime());
 
   const config = require(path.join(__dirname, '/config/index.js'));
   const appRouter = require(path.join(__dirname, '/routes.js'));
