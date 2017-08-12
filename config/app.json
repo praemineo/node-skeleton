@@ -1,8 +1,27 @@
 {
-  "development" : {
-    "port" : 4444
+  "development": {
+    "server": {
+      "port": 4444,
+      "protocol": "http",
+      "socket": true
     },
-  "production" : {
-    "port" : 4444
+    "db": {
+      "host": "localhost",
+      "port": 27017,
+      "database": "mongoDB"
+    }
+  },
+
+  "production": {
+    "server": {
+      "port": 4444,
+      "protocol": "http",
+      "socket": true
+    },
+    "db": {
+      "host": "localhost",
+      "port": 27017,
+      "database": "mongoDB"
+    }
   }
 }

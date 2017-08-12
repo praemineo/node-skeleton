@@ -1,5 +1,5 @@
 # The Node Skeleton #
-### Bare minimum code, to get you started with node.
+### Bare minimum code, to get you started with node and mongo.
 
 ## Directory Structure
 - *index.js*
@@ -22,6 +22,11 @@
 - *nodemon*
   For restart on change while development phase
 
-- *pm2*
-  For restart on error while production phase
+- *socket.io*
+  if socket connection is necessary.
+
+- *mongoose*
+  if you use mongo db.
+
+
 
