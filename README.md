@@ -32,26 +32,22 @@ npm run dev
 ```
 
 ## Directory Structure
-- *index.js*
-  Starting point for app execution.
 
-- *init.js*
-  Initialization sequences which executes once while app starts.
+- Root
+    - **index.js** :- 
+      Starting point for app execution.
 
+    - **init.js** :- 
+      Initialization sequences which executes once while app starts.
 
-## NPM Modules
-- *express*
-  For HTTP communication
+    - **initServer.js** :- 
+      This is called from **init.js**, it loads the config and initializes the server based on it. 
 
-- *helmet*
-  Security suit implementation
-
-- *bluebird*
-  Bluebird promise implementation
-
-- *nodemon*
-  For restart on change while development phase
-
-- *pm2*
-  For restart on error while production phase
+    - **initScript.sh** :- Shell Script. 
+        - Deletes the existing *git* repo 
+        - Initializes new *git* repo
+        - Creates the *logs* directory
+        - Triggers **NPM install**
+        - Creates a fresh *.gitignore*
+  
 
