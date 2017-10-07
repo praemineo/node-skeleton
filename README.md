@@ -33,51 +33,68 @@ npm run dev
 
 ## Directory Structure
 
-- Root
-    - **index.js** - 
-      Starting point for app execution.
+- *Root*
+  - **index.js** - 
+    Starting point for app execution.
 
-    - **init.js** - 
-      Initialization sequences which executes once while app starts.
+  - **init.js** - 
+    Initialization sequences which executes once while app starts.
 
-    - **initServer.js** - 
-      This is called from **init.js**, it loads the config and initializes the server based on it. 
+  - **initServer.js** - 
+    This is called from **init.js**, it loads the config and initializes the server based on it. 
 
-    - **initScript.sh** - Shell Script. 
-        - Deletes the existing *git* repo 
-        - Initializes new *git* repo
-        - Creates the *logs* directory
-        - Triggers **NPM install**
-        - Creates a fresh *.gitignore*
+  - **initScript.sh** - Shell Script. 
+    - Deletes the existing *git* repo 
+    - Initializes new *git* repo
+    - Creates the *logs* directory
+    - Triggers **NPM install**
+    - Creates a fresh *.gitignore*
+
+  - **routes.js** - main *router* file, called and mounted from *init.js*.
+    - this where all the *sub-routers* from *user_modules* are mounted on.
+    - this will also contains the *404* not-found middle-ware and also the *500* server error middle-ware
+
        
- - config
-    - **app.json** - 
-    Main config file for the app. 
-       ```
-       {
-          "development": { //NODE_ENV 
-            "server": {   //Server Setting
-              "port": 4444, // the Port Number
-              "protocol": "http", // the Protocol
-              "socket": true // enable Socket ?
-            },
-            "db": { // DataBase
-                "host": "localhost", // DB Host
-                "port": 27017, // DB port
-                "database": "mongoDB" // DB type
-                }
-            } 
-        }
-        ```
-        
-    - **bunyan.js** - Initializes the the BunyanJS, Exports the Logger.
-    
-    - **error.js** - Common Errors Config, Exports getError function.
-        - getError
-            - input - errorSting, data
-            - returns - the errorObject.
-    
-    - **helper.js** - Processes *NODE_ENV* and logs info or error.
-    
-    - **index.js** - calls, helper.js, bunyan.js and app.json and returns logger.
+- *config*
+  - **app.json** - Main config file for the app. 
+     ```
+     {
+        "development": { //NODE_ENV 
+          "server": {   //Server Setting
+            "port": 4444, // the Port Number
+            "protocol": "http", // the Protocol
+            "socket": true // enable Socket ?
+          },
+          "db": { // DataBase
+              "host": "localhost", // DB Host
+              "port": 27017, // DB port
+              "database": "mongoDB" // DB type
+              }
+          } 
+      }
+      ```
+      
+  - **bunyan.js** - Initializes the the BunyanJS, Exports the Logger.
+  
+  - **error.js** - Common Errors Config, Exports getError function.
+      - getError
+          - input - errorSting, data
+          - returns - the errorObject.
+  
+  - **helper.js** - Processes *NODE_ENV* and logs info or error.
+  
+  - **index.js** - calls, helper.js, bunyan.js and app.json and returns logger.
 
+
+  - **ssl** the directory in which all the ssl files and certificates.
+  
+ - *user_modules*
+    This will contain all the code from the users.
+    
+    - *Sample user created module.*
+    - **module_name**
+      - **router.js** - all the routes related to the module.
+      - **crud.js** - the *CRUD* for the module.
+      - **middleware.js** - the middleware to be used in the module.
+      - **schema.js** 
+      - **validator.js** 
