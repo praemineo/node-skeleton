@@ -1,4 +1,5 @@
-# The Node Skeleton (beta)#
+# The Node Skeleton (beta)
+
 A basic **Node** Boiler-Plate Code, for quickly setting up **API**.
 
 ## Getting Started
@@ -34,17 +35,17 @@ npm run dev
 ## Directory Structure
 
 - *Root*
-  - **index.js** - 
+  - **index.js** -
     Starting point for app execution.
 
-  - **init.js** - 
+  - **init.js** -
     Initialization sequences which executes once while app starts.
 
-  - **initServer.js** - 
-    This is called from **init.js**, it loads the config and initializes the server based on it. 
+  - **initServer.js** -
+    This is called from **init.js**, it loads the config and initializes the server based on it.
 
-  - **initScript.sh** - Shell Script. 
-    - Deletes the existing *git* repo 
+  - **initScript.sh** - Shell Script.
+    - Deletes the existing *git* repo
     - Initializes new *git* repo
     - Creates the *logs* directory
     - Triggers **NPM install**
@@ -54,12 +55,12 @@ npm run dev
     - this where all the *sub-routers* from *user_modules* are mounted on.
     - this will also contains the *404* not-found middle-ware and also the *500* server error middle-ware
 
-       
+
 - *config*
-  - **app.json** - Main config file for the app. 
+  - **app.json** - Main config file for the app.
      ```
      {
-        "development": { //NODE_ENV 
+        "development": { //NODE_ENV
           "server": {   //Server Setting
             "port": 4444, // the Port Number
             "protocol": "http", // the Protocol
@@ -70,31 +71,31 @@ npm run dev
               "port": 27017, // DB port
               "database": "mongoDB" // DB type
               }
-          } 
+          }
       }
       ```
-      
+
   - **bunyan.js** - Initializes the the BunyanJS, Exports the Logger.
-  
+
   - **error.js** - Common Errors Config, Exports getError function.
       - getError
           - input - errorSting, data
           - returns - the errorObject.
-  
+
   - **helper.js** - Processes *NODE_ENV* and logs info or error.
-  
+
   - **index.js** - calls, helper.js, bunyan.js and app.json and returns logger.
 
 
   - **ssl** the directory in which all the ssl files and certificates.
-  
+
  - *user_modules*
     This will contain all the code from the users.
-    
+
     - *Sample user created module.*
     - **module_name**
       - **router.js** - all the routes related to the module.
       - **crud.js** - the *CRUD* for the module.
       - **middleware.js** - the middleware to be used in the module.
-      - **schema.js** 
-      - **validator.js** 
+      - **schema.js**
+      - **validator.js**

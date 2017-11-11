@@ -9,10 +9,12 @@ const appRootDir = path.dirname(require.main.filename);
 const configHelper = require(path.join(__dirname, '/helper'));
 
 if (process.env.NODE_ENV === 'development') {
+  //Declaring output mode.
   const formatOut = bunyanFormat({
     outputMode: 'short',
   });
 
+  //creating bunyan logging
   module.exports.createLogger = function createLogger(name) {
     return bunyan.createLogger({
       name,
@@ -33,10 +35,12 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   // If no NODE_ENV configured, then it's considered as Production
 
+  //Declaring output mode.
   const formatOut = bunyanFormat({
     outputMode: 'short',
   });
 
+  //creating bunyan logging
   module.exports.createLogger = function createLogger(name) {
     return bunyan.createLogger({
       name,

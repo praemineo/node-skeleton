@@ -8,40 +8,68 @@ const helmet = require('helmet');
 const path = require('path');
 const cors = require('cors');
 const responseTime = require('response-time');
+//server initialization function from ./initServer.js
+const initServer = require(path.join(__dirname, 'initServer'));
 
 module.exports.init = function init() {
 
-  const app = express();
-  require.cache.userObject = { app };
-  require.cache.userObject.appPath = __dirname;
+//init express
+const app = express();
 
-  app.use(compression());
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({
-    extended: true,
-  }));
-  app.use(cookieParser());
-  app.use(helmet());
-  app.use(cors());
-  app.use(responseTime());
+//the custom userObject, that is shared over the application via the require cache.
+require.cache.userObject = {
+  app 
+};
 
-  const config = require(path.join(__dirname, '/config/index.js'));
-  const appRouter = require(path.join(__dirname, '/routes.js'));
-  const logger = config.logger.createLogger('init');
+//the base __dirname
+require.cache.userObject.appPath = __dirname; 
 
-  // Router mounting
-  app.use('/', appRouter);
+app.use(compression());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
+app.use(cookieParser());
+app.use(helmet());
+app.use(cors());
+app.use(responseTime());
 
-  // Public Folder binding
-  app.use(express.static(__dirname + "/public"));
+//initializing config and getting the config object
+const config = require(path.join(__dirname, '/config/index.js'));
 
-  app.listen(config.app.port)
-    .on('error', error => {
-      logger.error(error);
-    })
-    .on('listening', () => {
-      logger.info(`Express listening on ${config.app.port}`);
-    });
+//initializing errorObject
+const errorObject = require(path.join(__dirname, '/config/error.js'));
+require.cache.userObject.errorObject = errorObject;
+
+//loading the base application router.
+const appRouter = require(path.join(__dirname, '/routes.js'));
+
+//initialzing the router with the module name.
+const logger = config.logger.createLogger('init');
+
+// Router mounting
+app.use('/', appRouter);
+
+//initizing the server, with config and app.
+const serverObject = initServer(config, app);
+
+//passing the socketObject to the userObject
+require.cache.userObject.io = serverObject.io;
+
+//server object
+serverObject.server.listen(config.app.server.port)
+  .on('error', error => {
+    logger.error(error);
+  })
+  .on('listening', () => {
+    logger.info(`Express listening on ${config.app.server.port}`);
+  });
+
+//catching uncaught excpetions and terminating the application.
+process.on('uncaughtException', (err) => {
+  console.error('whoops! there was an error', errorObject.getError('UNCAUGHT_EXCEPTION', err));
+  process.exit(0);
+});
 
 };
 
