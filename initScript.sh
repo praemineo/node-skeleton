@@ -41,7 +41,7 @@ echo "Repository Initialization Successful"
 #installing NPM Modules
 echo "Installing NPM Modules"
 
-sudo npm install 
+npm install 
 
 echo "NPM Install Complete"
 

@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const initServer = (config, app) => {
 
   const serverObject = {};

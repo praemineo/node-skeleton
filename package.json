@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "export NODE_ENV=development && echo 'Node environment set to development' && nodemon index.js && exit 0",
-    "start": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton'",
+    "start": "(pm2 stop 'the-node-skeleton' || echo 'Nothing to kill') && pm2 start index.js --name 'the-node-skeleton'"
   },
   "keywords": [
     "Node",
@@ -31,8 +31,5 @@
     "socketio": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb-base": "^7.0.1",
-    "eslint-plugin-import": "^1.14.0"
   }
 }

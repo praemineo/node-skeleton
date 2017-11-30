@@ -1,14 +1,14 @@
 {
-  "development": { //NODE_ENV 
-    "server": {   //Server Setting
-      "port": 4444, // the Port Number
-      "protocol": "http", // the Protocol
-      "socket": true // enable Socket ?
+  "development": {
+    "server": {  
+      "port": 4444,
+      "protocol": "http",
+      "socket": true
     },
-    "db": { // DataBase
-      "host": "localhost", // DB Host
-      "port": 27017, // DB port
-      "database": "mongoDB" // DB type
+    "db": { 
+      "host": "localhost",
+      "port": 27017,
+      "database": "mongoDB"
     }
   },
 
