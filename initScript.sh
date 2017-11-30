@@ -1,3 +1,5 @@
+#!/bin/sh -e
+
 echo "Starting Bash Script"
 
 #checking for existing git repos
