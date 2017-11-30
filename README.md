@@ -6,8 +6,7 @@ A basic **Node** Boiler-Plate Code, for quickly setting up **API**.
 ```
 git clone https://github.com/preeminence/node-skeleton.git
 cd node-skeleton
-npm install
-npm run dev
+./initScript.sh
 ```
 
 ## Usage
