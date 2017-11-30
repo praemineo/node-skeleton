@@ -12,14 +12,14 @@ const validationObject = require(path.join(__dirname, 'validations.js'));
 router.get('/',
   crudObject.greetUser,
   function (req, res, next) {
-    res.send(req.tempData.greetMsg);
+    res.send(res.locals.greetMsg);
   });
 
 router.get('/sqr/:number',
   validationObject.validateSquareNumber,
   crudObject.squareNumber,
   function (req, res, next) {
-    res.send(req.tempData.result);
+    res.send(res.locals.result);
   });
 
 module.exports = router;
