@@ -113,3 +113,12 @@ echo "ssl" >> .gitignore
 echo "" >> .gitignore
 
 echo ".gitignore Created"
+
+
+echo "Removing the Shell Script"
+
+rm -rf 'initScript.sh'
+
+echo "Init ShellScript Deleted."
+
+
