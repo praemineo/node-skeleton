@@ -1,7 +1,6 @@
-const fs = require('fs');
+const { readFileSync } = require('fs');
 
-const initServer = (config, app) => {
-
+const initServer = async (config, app) => {
   const serverObject = {};
 
   if (config.app.server.protocol == 'https') {
@@ -10,9 +9,9 @@ const initServer = (config, app) => {
     
     // loading SSL certificates
     serverObject.server = https.createServer({
-      key: fs.readFileSync('config/ssl/private.key'),
-      cert: fs.readFileSync('config/ssl/certificate.crt'),
-      ca: fs.readFileSync('config/ssl/ca_bundle.crt')
+      key: readFileSync('config/ssl/private.key'),
+      cert: readFileSync('config/ssl/certificate.crt'),
+      ca: readFileSync('config/ssl/ca_bundle.crt')
     }, app);
 
   } else {
@@ -23,7 +22,7 @@ const initServer = (config, app) => {
 
   if (config.app.server.socket) {
     //init socket io
-    const socket = require('socket.io')
+    const socket = require('socket.io');
 
     if (config.app.server.socket.port) {
       //if port is present then init socket on that port
@@ -49,7 +48,10 @@ const initServer = (config, app) => {
     } : {};
 
     //connecting to mongoose.
-    mongoose.connect(`${config.app.db.host}:${config.app.db.host}/${config.app.db.database}`, auth);
+    await mongoose.connect(`mongodb://${config.app.db.host}/${config.app.db.database}`, {
+      ...auth,
+      useNewUrlParser: true
+    });
   }
 
   return serverObject;
