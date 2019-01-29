@@ -1,24 +1,21 @@
-'use strict';
-
 const path = require('path');
 const config = require(path.resolve(require.cache.userObject.appPath, 'config/index.js'));
+const router = require('express').Router();
+const { greetUser, squareNumber } = require('./crud');
+const { validateSquareNumber } = require('./validations');
+// eslint-disable-next-line no-unused-vars
 const logger = config.logger.createLogger('sample/routes');
 
-const router = require('express').Router();
-
-const crudObject = require(path.join(__dirname, 'crud.js'));
-const validationObject = require(path.join(__dirname, 'validations.js'));
-
 router.get('/',
-  crudObject.greetUser,
-  function (req, res, next) {
+  greetUser,
+  function (req, res) {
     res.send(res.locals.greetMsg);
   });
 
 router.get('/sqr/:number',
-  validationObject.validateSquareNumber,
-  crudObject.squareNumber,
-  function (req, res, next) {
+  validateSquareNumber,
+  squareNumber,
+  function (req, res) {
     res.send(res.locals.result);
   });
 

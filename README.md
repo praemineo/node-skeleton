@@ -4,7 +4,7 @@ A basic **Node** Boiler-Plate Code, for quickly setting up **API**.
 
 ## Getting Started
 ```
-git clone https://github.com/preeminence/node-skeleton.git
+git clone https://github.com/praemineo/node-skeleton.git
 cd node-skeleton
 ./initScript.sh
 ```
@@ -26,7 +26,7 @@ cd node-skeleton
       "Skeleton",
       "ES6"
     ],
-    "author": "preeminece",
+    "author": "praemineo",
     "license": "MIT",
   }
 ```
