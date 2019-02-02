@@ -98,3 +98,7 @@ cd node-skeleton
       - **middleware.js** - the middleware to be used in the module.
       - **schema.js**
       - **validator.js**
+
+- **eslint.rc** - eslint configuration file.
+  - constains basic configuration and rules for linting.
+  - update this file to add specific rules for your project
