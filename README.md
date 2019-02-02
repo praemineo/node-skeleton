@@ -54,11 +54,10 @@ cd node-skeleton
     - this where all the *sub-routers* from *user_modules* are mounted on.
     - this will also contains the *404* not-found middle-ware and also the *500* server error middle-ware
 
-
 - *config*
   - **app.json** - Main config file for the app.
-     ```
-     {
+      ```
+      {
         "development": { //NODE_ENV
           "server": {   //Server Setting
             "port": 4444, // the Port Number
@@ -77,18 +76,17 @@ cd node-skeleton
   - **bunyan.js** - Initializes the the BunyanJS, Exports the Logger.
 
   - **error.js** - Common Errors Config, Exports getError function.
-      - getError
-          - input - errorSting, data
-          - returns - the errorObject.
+    - getError
+      - input - errorSting, data
+      - returns - the errorObject.
 
   - **helper.js** - Processes *NODE_ENV* and logs info or error.
 
   - **index.js** - calls, helper.js, bunyan.js and app.json and returns logger.
 
-
   - **ssl** the directory in which all the ssl files and certificates.
 
- - *user_modules*
+- *user_modules*
     This will contain all the code from the users.
 
     - *Sample user created module.*
@@ -98,3 +96,7 @@ cd node-skeleton
       - **middleware.js** - the middleware to be used in the module.
       - **schema.js**
       - **validator.js**
+
+- **eslint.rc** - eslint configuration file.
+  - constains basic configuration and rules for linting.
+  - update this file to add specific rules for your project
